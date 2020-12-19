@@ -2,11 +2,12 @@ import styled from 'styled-components/macro'
 
 export const Item = styled.div`
   display: flex;
-  border: 1px solid black;
+  border: 1px solid ${(props) => props.theme.secondary};
   padding: 0.3rem;
   width: 100%;
   position: relative;
   margin-bottom: 1rem;
+  background-color: ${(props) => props.theme.third};
 `
 
 export const SongImg = styled.div`
@@ -36,4 +37,8 @@ export const GroupDetails = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 0.3rem;
+
+  span {
+    color: ${(props) => props.theme.secondary};
+  }
 `

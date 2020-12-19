@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React from 'react'
+import { withTheme } from 'styled-components'
+import { Input } from './Search'
 
-export const Search = () => {
+const Search = () => {
   return (
     <div>
       <Input type='text' placeholder='Search music' />
@@ -9,14 +10,4 @@ export const Search = () => {
   )
 }
 
-const Input = styled.input`
-  width: 500px;
-  height: 30px;
-
-  font-size: 1.3rem;
-  padding: 0.2rem;
-  color: #333333;
-
-  border: 2px solid black;
-  outline: none;
-`
+export default withTheme(Search)

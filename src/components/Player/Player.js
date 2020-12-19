@@ -1,16 +1,25 @@
 import styled, { css } from 'styled-components/macro'
 
+function getColorTheme(props) {
+  if (props.theme.primary === 'rgb(19, 19, 19)') {
+    return 'none'
+  }
+
+  return 'invert(100%)'
+}
+
 export const Controller = styled.div`
-  background-color: rgb(19, 19, 19);
+  background-color: ${(props) => props.theme.third};
   width: 120px;
   display: flex;
   justify-content: space-between;
   img {
     width: 32px;
     transition: all 0.1s ease-in-out;
+    filter: ${(props) => getColorTheme(props)};
 
     &:hover {
-      border: 2px solid #fff;
+      border: 2px solid gray};
       padding: 1px;
     }
   }
@@ -31,10 +40,10 @@ export const PlayerMain = styled.div`
 
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(19, 19, 19);
+  background-color: ${(props) => props.theme.third};
   height: 50px;
   margin-top: auto;
-  border-top: 2px solid black;
+  border-top: 2px solid ${(props) => props.theme.secondary};
 
   position: absolute;
   bottom: 0;
@@ -44,14 +53,14 @@ export const PlayerMain = styled.div`
 
 export const SongInfo = styled.div`
   display: flex;
-  color: rgb(240, 240, 240);
+  color: ${(props) => props.theme.secondary};
   width: 280px;
 
   img {
     height: 35px;
     width: 35px;
     object-fit: cover;
-    border: 1px solid #fff;
+    border: 1px solid ${(props) => props.theme.secondary};
   }
 
   span {
