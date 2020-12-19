@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { theme } from '../store/ThemeStore'
 import styled, { ThemeProvider, withTheme } from 'styled-components'
@@ -8,13 +8,19 @@ import Player from './Player'
 import Main from './Main'
 
 const App = () => {
-  const [themeMode, setThemeMode] = useState('light')
+  const [themeMode, setThemeMode] = useState(
+    localStorage.getItem('themeMode') || 'light'
+  )
 
   const onThemeChange = () => {
     setThemeMode((themeMode) => {
       return themeMode === 'light' ? 'dark' : 'light'
     })
   }
+
+  useEffect(() => {
+    localStorage.setItem('themeMode', themeMode)
+  }, [themeMode])
 
   return (
     <ThemeProvider theme={theme.themes[themeMode]}>

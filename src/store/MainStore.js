@@ -35,6 +35,24 @@ class Audio {
     this.playing = songData
     this.isPlaying = true
   }
+
+  setNextSong = (curSongIdx) => {
+    const nextSong = this.songs.map((s, i) => {
+      if (s.id === curSongIdx) return this.songs[i + 1]
+      return this.songs[i]
+    })[0]
+
+    this.playing = { ...nextSong }
+  }
+
+  setPrevSong = (curSongIdx) => {
+    const nextSong = this.songs.map((s, i) => {
+      if (s.id === curSongIdx) return this.songs[i - 1]
+      return this.songs[i]
+    })[0]
+
+    this.playing = { ...nextSong }
+  }
 }
 
 export const audio = new Audio()

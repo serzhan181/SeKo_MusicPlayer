@@ -15,6 +15,7 @@ const Main = observer(({ audio }) => {
           author={s.author}
           img={s.img}
           setSong={audio.setSong}
+          id={s.id}
         />
       ))}
     </MainList>

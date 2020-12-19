@@ -19,7 +19,7 @@ export const Controller = styled.div`
     filter: ${(props) => getColorTheme(props)};
 
     &:hover {
-      border: 2px solid gray};
+      border: 2px solid gray;
       padding: 1px;
     }
   }

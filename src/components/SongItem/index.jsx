@@ -2,10 +2,10 @@ import React from 'react'
 import { GroupDetails, Item, SongImg } from './SongItem'
 import { withTheme } from 'styled-components'
 
-const SongItem = ({ songURL, title, author, img, setSong }) => {
+const SongItem = ({ songURL, title, author, img, setSong, id }) => {
   return (
     <Item>
-      <SongImg onClick={() => setSong({ songURL, title, author, img })}>
+      <SongImg onClick={() => setSong({ songURL, title, author, img, id })}>
         <img src={img} alt={title} />
       </SongImg>
       <GroupDetails>
