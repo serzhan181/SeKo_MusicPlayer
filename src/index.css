@@ -1,6 +1,8 @@
 body {
   color: #222;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  overflow: hidden;
 }
 
 *,

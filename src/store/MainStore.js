@@ -21,6 +21,14 @@ class Audio {
       title: 'Broke Bitch',
       author: 'Pure Luxury',
     },
+    {
+      id: 3,
+      songURL: 'http://streaming.tdiradio.com:8000/house.mp3',
+      img:
+        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.kwcT0FMG8RvOdjUh_B3OPQHaFj%26pid%3DApi&f=1',
+      title: 'House MP3',
+      author: 'autotune',
+    },
   ]
 
   playing = null
@@ -37,21 +45,27 @@ class Audio {
   }
 
   setNextSong = (curSongIdx) => {
-    const nextSong = this.songs.map((s, i) => {
-      if (s.id === curSongIdx) return this.songs[i + 1]
-      return this.songs[i]
-    })[0]
+    const songById = this.songs.find((s) => s.id === curSongIdx)
+    const idxInArr = this.songs.indexOf(songById)
+
+    let nextSong
+
+    if (idxInArr === this.songs.length - 1) nextSong = this.songs[0]
+    else nextSong = this.songs[idxInArr + 1]
 
     this.playing = { ...nextSong }
   }
 
   setPrevSong = (curSongIdx) => {
-    const nextSong = this.songs.map((s, i) => {
-      if (s.id === curSongIdx) return this.songs[i - 1]
-      return this.songs[i]
-    })[0]
+    const songById = this.songs.find((s) => s.id === curSongIdx)
+    const idxInArr = this.songs.indexOf(songById)
 
-    this.playing = { ...nextSong }
+    let prevSong
+
+    if (idxInArr === 0) prevSong = this.songs[this.songs.length - 1]
+    else prevSong = this.songs[idxInArr - 1]
+
+    this.playing = { ...prevSong }
   }
 }
 

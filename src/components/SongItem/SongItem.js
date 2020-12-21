@@ -7,13 +7,17 @@ export const Item = styled.div`
   width: 100%;
   position: relative;
   margin-bottom: 1rem;
-  background-color: ${(props) => props.theme.third};
+  background-color: ${(props) => {
+    if (props.active) return props.theme.primary
+    return props.theme.third
+  }};
 `
 
 export const SongImg = styled.div`
   height: 100px;
   width: 100px;
   position: relative;
+  overflow: hidden;
 
   img {
     height: 100%;
