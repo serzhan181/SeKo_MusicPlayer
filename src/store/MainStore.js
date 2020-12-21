@@ -45,8 +45,7 @@ class Audio {
   }
 
   setNextSong = (curSongIdx) => {
-    const songById = this.songs.find((s) => s.id === curSongIdx)
-    const idxInArr = this.songs.indexOf(songById)
+    const idxInArr = this.songs.findIndex((s) => s.id === curSongIdx)
 
     let nextSong
 
@@ -57,8 +56,7 @@ class Audio {
   }
 
   setPrevSong = (curSongIdx) => {
-    const songById = this.songs.find((s) => s.id === curSongIdx)
-    const idxInArr = this.songs.indexOf(songById)
+    const idxInArr = this.songs.findIndex((s) => s.id === curSongIdx)
 
     let prevSong
 
