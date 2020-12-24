@@ -1,13 +1,6 @@
 import React from 'react'
-import { withTheme } from 'styled-components'
-import { Input } from './Search'
+import Search from './Search.jsx'
 
-const Search = () => {
-  return (
-    <div>
-      <Input type='text' placeholder='Search music' />
-    </div>
-  )
+export const SearchContainer = () => {
+  return <Search />
 }
-
-export default withTheme(Search)

@@ -4,7 +4,7 @@ import { theme } from '../store/ThemeStore'
 import styled, { ThemeProvider, withTheme } from 'styled-components'
 import { audio } from '../store/MainStore'
 import Header from './Header'
-import Player from './Player'
+import { PlayerContainer } from './Player'
 import Main from './Main'
 
 const App = () => {
@@ -31,7 +31,7 @@ const App = () => {
           <div className='container'>
             <Main audio={audio} />
           </div>
-          <Player audio={audio} />
+          <PlayerContainer audio={audio} />
         </Router>
       </MainWrapper>
     </ThemeProvider>
