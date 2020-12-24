@@ -8,6 +8,6 @@ export const Input = styled.input`
   padding: 0.2rem;
   color: #222;
 
-  border: 1px solid ${(props) => props.theme.secondary};
+  border: 1px solid ${(props) => props.theme.primary};
   outline: none;
 `

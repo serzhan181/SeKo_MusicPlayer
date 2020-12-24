@@ -63,8 +63,14 @@ export const ProgressMusic = styled.div`
   input {
     width: 100%;
     position: absolute;
+    outline: none;
+    border: 0;
     top: -12px;
     left: 0;
+  }
+  input:focus {
+    outline: none;
+    border: 0;
   }
 `
 

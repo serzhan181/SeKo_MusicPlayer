@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import {
   Controller,
@@ -12,10 +12,23 @@ import { withTheme } from 'styled-components'
 const Player = observer(({ audio }) => {
   const player = useRef(null)
 
-  const onMiddlePlaying = () => {
-    const middle = Math.floor(player.current?.duration / 2)
+  const [curTime, setCurTime] = useState(0)
+  const [volume, setVolume] = useState(1)
+  const dur = player.current?.duration
 
-    player.current.currentTime = middle
+  const handleVolume = (v) => {
+    setVolume(v)
+    player.current.volume = v
+  }
+
+  const handleProgress = (e) => {
+    let duration = dur === Infinity ? 20 : dur
+
+    let compute = Math.floor((e.target.value * duration) / 100)
+
+    console.log('COMPUTED VALUE', compute)
+    setCurTime(compute)
+    player.current.currentTime = compute
   }
 
   useEffect(() => {
@@ -28,16 +41,26 @@ const Player = observer(({ audio }) => {
 
   return (
     <>
-      <button onClick={onMiddlePlaying}>Middle</button>
       <audio
+        onTimeUpdate={(e) => setCurTime(e.target.currentTime)}
         onEnded={() => audio.setNextSong(audio.playing.id)}
         src={audio.playing?.songURL}
         ref={player}
+        type='audio/mpeg'
+        preload='true'
+        autoPlay={false}
       ></audio>
 
       <PlayerMain isDisplayed={audio.playing}>
         <PlayerInner>
-          <div style={{ color: '#fff' }}>VOLUME</div>
+          <div>
+            <span>{Math.floor(volume * 100)}</span>
+            <input
+              value={Math.floor(volume * 100)}
+              type='range'
+              onChange={(e) => handleVolume(e.target.value / 100)}
+            />
+          </div>
           <Controller>
             <img
               onClick={() => audio.setPrevSong(audio.playing.id)}
@@ -62,7 +85,11 @@ const Player = observer(({ audio }) => {
           </SongInfo>
         </PlayerInner>
         <ProgressMusic>
-          <input type='range' name='' id='' />
+          <input
+            type='range'
+            value={dur ? (curTime * 100) / dur : 0}
+            onChange={handleProgress}
+          />
         </ProgressMusic>
       </PlayerMain>
     </>
