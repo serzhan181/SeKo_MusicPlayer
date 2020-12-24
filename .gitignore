@@ -6,15 +6,11 @@
 server/yarn.lock
 server/node_modules
 .pnp.js
-<<<<<<< HEAD
-server/node_modules
-yarn.lock
-.env
-=======
 .env
 .eslintcache
 yarn.lock
->>>>>>> 73ed2ec... server added
+.eslintcache~73ed2ec... server added
+.eslintcache
 
 # testing
 /coverage
