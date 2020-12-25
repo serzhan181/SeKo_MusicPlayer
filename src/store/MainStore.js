@@ -29,15 +29,6 @@ class Audio {
       title: 'House MP3',
       author: 'autotune',
     },
-    {
-      id: 4,
-      songURL:
-        'https://r2---sn-5auxa-5a5e.googlevideo.com/videoplayback?expire=1608825124&ei=xGTkX8LKEIK9yQX39JTIBw&ip=176.64.34.75&id=o-AJHGul9acgQllIUV7JeSd0lLzW4dnClZJrSQDn2vbSgY&itag=140&source=youtube&requiressl=yes&mh=2o&mm=31%2C29&mn=sn-5auxa-5a5e%2Csn-ug5onuxaxjvh-n8vs&ms=au%2Crdu&mv=m&mvi=2&pl=24&initcwndbps=212500&vprv=1&mime=audio%2Fmp4&ns=Fyw_tyo9a6qD2e3jpsI1l5IF&gir=yes&clen=3010026&dur=185.945&lmt=1606286379998300&mt=1608803081&fvip=2&keepalive=yes&c=WEB&txp=5511222&n=OJv5IyJE1Na0zfCf&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIgWIfSt7EezbBdyGzg2_K5R81dDOizDsoLsPMyrLVzu7UCIQDQGn89agE1lCZULYoPN6hhT6xwVBGJXiTSS4s3Q0I-_Q%3D%3D&ratebypass=yes&sig=AOq0QJ8wRQIhAKCj2h_Ngya3BxpV21cu3Xctw_CBdCkndeLrlh4sGS0ZAiA-SakdLN_e08RVzsIdpa4eH0tlcyjIEM2p_2D7RbRZcg%3D%3D',
-      img:
-        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FVWoIpDVkOH0%2Fmaxresdefault.jpg&f=1&nofb=1',
-      title: 'Mo Bamba',
-      author: 'Sheck Wes',
-    },
   ]
 
   playing = null

@@ -2,37 +2,47 @@ import styled from 'styled-components'
 
 export const Item = styled.div`
   display: flex;
+  flex-direction: column;
   border: 1px solid ${(props) => props.theme.secondary};
-  padding: 0.3rem;
-  width: 100%;
+  margin: 0 0.3rem;
+  width: 270px;
+  height: 340px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
   position: relative;
   margin-bottom: 1rem;
   background-color: ${(props) => {
-    if (props.active) return props.theme.primary
-    return props.theme.third
+    if (props.active) return props.theme.third
+    return props.theme.secondary
   }};
 `
 
 export const SongImg = styled.div`
-  height: 100px;
-  width: 100px;
+  height: 85%;
+  width: 100%;
   position: relative;
   overflow: hidden;
 
   img {
     height: 100%;
+    min-width: 100%;
     object-fit: cover;
   }
 
   &:hover {
     &::before {
-      content: url('assets/play_on_song.svg');
+      content: url(${(props) => {
+        if (props.isPlaying) {
+          return 'assets/play_on.svg'
+        } else return 'assets/pause_on.svg'
+      }});
       cursor: pointer;
       position: absolute;
-      width: 50px;
-      height: 50px;
       top: 25%;
       left: 25%;
+      width: 50px;
+      height: 50px;
     }
   }
 `
@@ -40,9 +50,13 @@ export const SongImg = styled.div`
 export const GroupDetails = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-left: 0.3rem;
+  color: ${(props) => props.theme.primary};
 
   span {
-    color: ${(props) => props.theme.secondary};
+    font-weight: 300;
+    font-size: 14px;
   }
 `

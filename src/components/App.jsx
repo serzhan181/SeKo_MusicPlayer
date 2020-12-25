@@ -12,7 +12,7 @@ const App = () => {
     localStorage.getItem('themeMode') || 'light'
   )
 
-  const onThemeChange = () => {
+  const setTheme = () => {
     setThemeMode((themeMode) => {
       return themeMode === 'light' ? 'dark' : 'light'
     })
@@ -26,8 +26,7 @@ const App = () => {
     <ThemeProvider theme={theme.themes[themeMode]}>
       <MainWrapper>
         <Router>
-          <Header />
-          <button onClick={onThemeChange}>Change theme</button>
+          <Header setTheme={setTheme} themeMode={themeMode} />
           <div className='container'>
             <Main audio={audio} />
           </div>

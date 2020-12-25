@@ -33,7 +33,7 @@ const Player = ({
       <PlayerMain isDisplayed={audio.playing}>
         <PlayerInner>
           <div>
-            <span>{Math.floor(volume * 100)}</span>
+            <img style={{ height: 32 }} src='assets/volume.svg' alt='volume' />
             <input
               value={Math.floor(volume * 100)}
               type='range'
@@ -59,8 +59,10 @@ const Player = ({
           </Controller>
           <SongInfo>
             <img src={audio.playing?.img} alt={audio.playing?.title} />
-            <span>{audio.playing?.author}</span>
-            <span>{audio.playing?.title}</span>
+            <div>
+              <h4>{audio.playing?.author}</h4>
+              <span>{audio.playing?.title}</span>
+            </div>
           </SongInfo>
         </PlayerInner>
         <ProgressMusic>

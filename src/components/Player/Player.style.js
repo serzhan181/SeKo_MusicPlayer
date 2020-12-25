@@ -1,15 +1,15 @@
 import styled, { css } from 'styled-components'
 
 function getColorTheme(props) {
-  if (props.theme.primary === 'rgb(19, 19, 19)') {
-    return 'none'
+  if (props.theme.mode === 'dark') {
+    return 'invert(100%)'
   }
 
-  return 'invert(100%)'
+  return 'none'
 }
 
 export const Controller = styled.div`
-  background-color: ${(props) => props.theme.third};
+  background-color: ${(props) => props.theme.secondary};
   width: 120px;
   display: flex;
   justify-content: space-between;
@@ -35,10 +35,9 @@ export const PlayerMain = styled.div`
 
   justify-content: space-around;
   align-items: center;
-  background-color: ${(props) => props.theme.third};
+  background-color: ${(props) => props.theme.secondary};
   height: 50px;
   margin-top: auto;
-  border-top: 2px solid ${(props) => props.theme.secondary};
 
   position: absolute;
   bottom: 0;
@@ -76,18 +75,30 @@ export const ProgressMusic = styled.div`
 
 export const SongInfo = styled.div`
   display: flex;
-  color: ${(props) => props.theme.secondary};
+  color: ${(props) => props.theme.primary};
   width: 280px;
+  justify-content: center;
+  align-items: center;
 
   img {
     height: 35px;
     width: 35px;
     object-fit: cover;
-    border: 1px solid ${(props) => props.theme.secondary};
+    border: 1px solid ${(props) => props.theme.primary};
   }
 
-  span {
-    display: block;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 0.5rem;
+
+    span {
+      font-weight: 300;
+      font-size: 14px;
+    }
   }
 `
 export const PlayerInner = styled.div`
