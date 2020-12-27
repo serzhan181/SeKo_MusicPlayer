@@ -1,65 +1,37 @@
-const ytdl = require("ytdl-core");
-const express = require("express");
-const cors = require("cors");
-const cors_proxy = require('cors-anywhere');
-const rateLimit = require("express-rate-limit");
+const ytdl = require('ytdl-core')
+const express = require('express')
+const cors = require('cors')
+const { YTSearcher } = require('ytsearcher')
+require('dotenv').config()
+const searcher = new YTSearcher(process.env.YT_API_KEY)
 
-const app = express();
-
-const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 10 minutes 20 request
-  max: 10 // limit each IP to 100 requests per windowMs
-});
+const app = express()
 
 //  apply to all requests
-app.use(limiter);
+app.use(cors())
 
-let allowedOrigins = ['http://localhost:3000'];
+const port = 5000
 
-app.use(cors({
-  origin: function (origin, callback) {
-    // allow requests with no origin 
-    // (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not ' +
-        'allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  }
-}));
-app.options("*", cors());
-
-const port = 3000;
-
-app.get("/", (req, res) => {
-  res.send("Welcome to ylight api")
+app.get('/', (req, res) => {
+  res.send('server works')
 })
-
-
 
 app.get('/song', async (req, res) =>
   ytdl
     .getInfo(req.query.id)
-    .then(info => {
+    .then((info) => {
       const audioFormats = ytdl.filterFormats(info.formats, 'audioonly')
-      res.set('Cache-Control', 'public, max-age=20000'); //6hrs aprox
+      res.set('Cache-Control', 'public, max-age=20000') //6hrs aprox
       res.json(audioFormats[1].url)
     })
-    .catch(err => res.status(400).json(err.message))
+    .catch((err) => res.status(400).json(err.message))
 )
 
-let proxy = cors_proxy.createServer({
-  originWhitelist: [], // Allow all origins
-  requireHeaders: [], // Do not require any headers.
-  removeHeaders: [] // Do not remove any headers.
-});
+// SEARCH
 
-app.get('/proxy/:proxyUrl*', (req, res) => {
-  req.url = req.url.replace('/proxy/', '/'); // Strip '/proxy' from the front of the URL, else the proxy won't work.
-  proxy.emit('request', req, res);
-});
+app.get('/search', async (req, res) => {
+  let result = await searcher.search(req.query.q, { type: 'video' })
+  res.json(result)
+})
 
-
-app.listen(port, () => console.log(`Server is listening on port ${port}.`));
+app.listen(port, () => console.log(`Server is listening on port ${port}.`))
