@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react-lite'
 import SongItem from '../SongItem'
 import { MainList } from './Main'
@@ -8,9 +8,7 @@ import { useQuery } from '../../hooks/useQuery'
 const MainContainer = observer(({ audio }) => {
   const query = useQuery()
 
-  useEffect(() => {
-    audio.setSongsOnSearch(query.get('q'))
-  }, [audio, query])
+  audio.setSongsOnSearch(query.get('q'))
 
   return (
     <MainList>

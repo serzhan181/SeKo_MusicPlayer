@@ -30,6 +30,7 @@ app.get('/song', async (req, res) =>
 // SEARCH
 
 app.get('/search', async (req, res) => {
+  console.log('GET SEARCH REQUEST', req.query.q)
   let result = await searcher.search(req.query.q, { type: 'video' })
   res.json(result)
 })

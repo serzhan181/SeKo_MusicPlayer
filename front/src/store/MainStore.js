@@ -47,12 +47,23 @@ class Audio {
 
   setIsSongLoaded = () => (this.isSongLoaded = !this.isSongLoaded)
 
+  searchQuery = ''
+
   setSongsOnSearch = async (query) => {
-    const res = await getSearchRes(query)
-    const parsedSongs = parseSongs(res.data)
-    runInAction(() => {
-      this.songs = parsedSongs
-    })
+    if (query !== this.searchQuery) {
+      runInAction(() => {
+        this.searchQuery = query // needed, cuz component renders several times and server recives several requests.
+      })
+
+      const res = await getSearchRes(query)
+      const parsedSongs = parseSongs(res.data)
+      runInAction(() => {
+        this.songs = parsedSongs
+      })
+      return
+    }
+    console.log('THE SAME QUERY')
+    return
   }
 
   setSong = async (songData) => {
@@ -60,13 +71,16 @@ class Audio {
 
     const { id } = songData
     const songURL = await getSong(id)
-    this.playing = {
-      title: songData.title,
-      author: songData.author,
-      img: songData.img,
-      id,
-      songURL: songURL.data,
-    }
+
+    runInAction(() => {
+      this.playing = {
+        title: songData.title,
+        author: songData.author,
+        img: songData.img,
+        id,
+        songURL: songURL.data,
+      }
+    })
 
     this.setIsSongLoaded()
 

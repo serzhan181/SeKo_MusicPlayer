@@ -6,7 +6,7 @@ export const Item = styled.div`
   border: 1px solid ${(props) => props.theme.secondary};
   margin: 0 0.3rem;
   width: 270px;
-  height: 340px;
+  height: 320px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 

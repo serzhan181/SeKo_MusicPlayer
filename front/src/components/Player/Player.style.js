@@ -39,7 +39,7 @@ export const PlayerMain = styled.div`
   height: 50px;
   margin-top: auto;
 
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   left: 0;
