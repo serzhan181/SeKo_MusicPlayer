@@ -13,10 +13,12 @@ class Audio {
 
   playing = null
 
-  isPlaying = false
+  isPlayingId = null
 
-  setIsPlaying = () => {
-    this.isPlaying = !this.isPlaying
+  setIsPlaying = (id) => {
+    if (this.isPlayingId !== null) {
+      this.isPlayingId = null
+    } else this.isPlayingId = id
   }
 
   setNextSong = (curSongIdx) => {
@@ -43,14 +45,18 @@ class Audio {
 
   // Song related (async)
 
-  isSetSongLoaded = true
-  setIsSongLoaded = () => (this.isSetSongLoaded = !this.isSetSongLoaded)
+  loadedSongId = null
+  setIsSongLoaded = (id) => {
+    if (this.loadedSongId !== null) this.loadedSongId = null
+    else this.loadedSongId = id
+  }
 
   haveSongsLoaded = true
   setHaveSongsLoaded = () => {
     this.haveSongsLoaded = !this.haveSongsLoaded
   }
   searchQuery = ''
+
   setSongsOnSearch = async (query) => {
     if (query !== this.searchQuery) {
       this.setHaveSongsLoaded()
@@ -71,7 +77,7 @@ class Audio {
   }
 
   setSong = async (songData) => {
-    this.setIsSongLoaded()
+    this.setIsSongLoaded(songData.id)
 
     const { id } = songData
     let songURL
@@ -91,10 +97,10 @@ class Audio {
       }
     })
 
-    this.setIsSongLoaded()
+    this.setIsSongLoaded(songData.id)
 
     runInAction(() => {
-      this.isPlaying = true
+      this.isPlayingId = id
     })
   }
 }

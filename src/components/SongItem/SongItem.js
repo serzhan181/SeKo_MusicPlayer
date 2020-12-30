@@ -36,22 +36,30 @@ export const SongImg = styled.div`
   }
 
   &:hover {
-    &::before {
+    /* &::before {
       content: url(${(props) => {
-        if (!props.isSetSongLoaded) {
-          return 'assets/songLoading.svg'
-        }
-        if (props.isPlaying) {
-          return 'assets/play_on.svg'
-        } else return 'assets/pause_on.svg'
-      }});
+      if (!props.loadedSongId) {
+        return 'assets/songLoading.svg'
+      }
+      if (props.isPlayingId) {
+        return 'assets/play_on.svg'
+      } else return 'assets/pause_on.svg'
+    }});
       cursor: pointer;
       position: absolute;
       top: 25%;
       left: 25%;
       width: 50px;
       height: 50px;
-    }
+    } */
+  }
+`
+
+export const SongMetaImg = styled.div`
+  img {
+    position: absolute;
+    top: 25%;
+    left: 25%;
   }
 `
 

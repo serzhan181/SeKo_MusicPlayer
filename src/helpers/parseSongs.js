@@ -295,8 +295,8 @@ export function parseSongs(data = arr) {
   const res = data.currentPage.map((s) => ({
     id: s.id,
     img: s.thumbnails.high.url,
-    title: s.title.length > 12 ? s.title.slice(0, 11) + '...' : s.title,
-    author: s.kind,
+    title: s.title.length > 16 ? s.title.slice(0, 16) + '...' : s.title,
+    author: s.channelTitle,
   }))
 
   return res

@@ -26,12 +26,12 @@ export const PlayerContainer = observer(({ audio }) => {
   }
 
   useEffect(() => {
-    if (audio.isPlaying) {
+    if (audio.isPlayingId) {
       player.current.play()
     } else {
       player.current.pause()
     }
-  }, [audio.isPlaying, audio.playing])
+  }, [audio.isPlayingId, audio.playing])
 
   return (
     <Player

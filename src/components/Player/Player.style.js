@@ -36,7 +36,7 @@ export const PlayerMain = styled.div`
   justify-content: space-around;
   align-items: center;
   background-color: ${(props) => props.theme.secondary};
-  height: 50px;
+  height: 55px;
   margin-top: auto;
 
   position: fixed;
@@ -64,7 +64,7 @@ export const ProgressMusic = styled.div`
     position: absolute;
     outline: none;
     border: 0;
-    top: -12px;
+    top: -15px;
     left: 0;
   }
   input:focus {

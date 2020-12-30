@@ -49,7 +49,7 @@ const Player = ({
               alt='previous'
             />
             <img
-              src={audio.isPlaying ? 'assets/pause.svg' : 'assets/play.svg'}
+              src={audio.isPlayingId ? 'assets/pause.svg' : 'assets/play.svg'}
               onClick={audio.setIsPlaying}
               alt='play'
             />
