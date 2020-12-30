@@ -43,14 +43,17 @@ class Audio {
 
   // Song related (async)
 
-  isSongLoaded = true
+  isSetSongLoaded = true
+  setIsSongLoaded = () => (this.isSetSongLoaded = !this.isSetSongLoaded)
 
-  setIsSongLoaded = () => (this.isSongLoaded = !this.isSongLoaded)
-
+  haveSongsLoaded = true
+  setHaveSongsLoaded = () => {
+    this.haveSongsLoaded = !this.haveSongsLoaded
+  }
   searchQuery = ''
-
   setSongsOnSearch = async (query) => {
     if (query !== this.searchQuery) {
+      this.setHaveSongsLoaded()
       runInAction(() => {
         this.searchQuery = query // needed, cuz component renders several times and server recives several requests.
       })
@@ -60,9 +63,10 @@ class Audio {
       runInAction(() => {
         this.songs = parsedSongs
       })
+      this.setHaveSongsLoaded()
       return
     }
-    console.log('THE SAME QUERY')
+
     return
   }
 
@@ -70,7 +74,12 @@ class Audio {
     this.setIsSongLoaded()
 
     const { id } = songData
-    const songURL = await getSong(id)
+    let songURL
+    try {
+      songURL = await getSong(id)
+    } catch (error) {
+      console.log('ERROR BLYAT', error)
+    }
 
     runInAction(() => {
       this.playing = {

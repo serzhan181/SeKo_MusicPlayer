@@ -10,13 +10,13 @@ const SongItem = ({
   id,
   playingId,
   isPlaying,
-  isSongLoaded,
+  isSetSongLoaded,
 }) => {
   return (
     <Item active={playingId === id}>
       <SongImg
         isPlaying={isPlaying}
-        isSongLoaded={isSongLoaded}
+        isSetSongLoaded={isSetSongLoaded}
         onClick={() => setSong({ title, author, img, id })}
       >
         <img src={img} alt={title} />

@@ -8,7 +8,7 @@ export const lightTheme = {
 
 export const darkTheme = {
   primary: 'rgb(19, 19, 19)',
-  secondary: 'rgb(239, 239, 239)',
+  secondary: '#757575',
   third: 'rgb(54, 61, 63)',
 
   mode: 'dark',

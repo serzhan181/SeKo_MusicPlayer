@@ -38,7 +38,7 @@ export const SongImg = styled.div`
   &:hover {
     &::before {
       content: url(${(props) => {
-        if (!props.isSongLoaded) {
+        if (!props.isSetSongLoaded) {
           return 'assets/songLoading.svg'
         }
         if (props.isPlaying) {

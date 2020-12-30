@@ -62,8 +62,8 @@ const Player = ({
           <SongInfo>
             <img src={audio.playing?.img} alt={audio.playing?.title} />
             <div>
-              <h4>{audio.playing?.author}</h4>
-              <span>{audio.playing?.title}</span>
+              <h4>{audio.playing?.title}</h4>
+              <span>{audio.playing?.author}</span>
             </div>
           </SongInfo>
         </PlayerInner>
