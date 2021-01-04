@@ -53,7 +53,9 @@ class Audio {
 
   haveSongsLoaded = true
   setHaveSongsLoaded = () => {
-    this.haveSongsLoaded = !this.haveSongsLoaded
+    runInAction(() => {
+      this.haveSongsLoaded = !this.haveSongsLoaded
+    })
   }
   searchQuery = ''
 

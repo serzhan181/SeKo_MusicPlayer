@@ -27,7 +27,6 @@ const MainContainer = observer(({ audio }) => {
               id={s.id}
               playingId={audio.playing?.id}
               isPlayingId={audio.isPlayingId}
-              setIsPlaying={audio.setIsPlaying}
               loadedSongId={audio.loadedSongId}
             />
           ))}

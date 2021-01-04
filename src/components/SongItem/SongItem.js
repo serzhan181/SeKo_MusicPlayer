@@ -21,6 +21,16 @@ export const Item = styled.div`
   }};
 `
 
+export const SongMetaImg = styled.div`
+  img {
+    display: none;
+    position: absolute;
+    left: 0%;
+    top: 45%;
+    cursor: pointer;
+  }
+`
+
 export const SongImg = styled.div`
   display: flex;
   margin: auto;
@@ -36,30 +46,13 @@ export const SongImg = styled.div`
   }
 
   &:hover {
-    /* &::before {
-      content: url(${(props) => {
-      if (!props.loadedSongId) {
-        return 'assets/songLoading.svg'
+    ${SongMetaImg} {
+      img {
+        display: block;
+        height: 70px;
+        object-fit: contain;
       }
-      if (props.isPlayingId) {
-        return 'assets/play_on.svg'
-      } else return 'assets/pause_on.svg'
-    }});
-      cursor: pointer;
-      position: absolute;
-      top: 25%;
-      left: 25%;
-      width: 50px;
-      height: 50px;
-    } */
-  }
-`
-
-export const SongMetaImg = styled.div`
-  img {
-    position: absolute;
-    top: 25%;
-    left: 25%;
+    }
   }
 `
 

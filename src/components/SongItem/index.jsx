@@ -12,16 +12,22 @@ const SongItem = ({
   isPlayingId,
   loadedSongId,
 }) => {
+  let imageStateSrc =
+    isPlayingId !== id ? 'assets/pause_on.svg' : 'assets/play_on.svg'
+
   return (
     <Item active={playingId === id}>
       <SongImg
         isPlayingId={isPlayingId === id}
         loadedSongId={loadedSongId !== id}
-        onClick={() => setSong({ title, author, img, id })}
       >
         <img src={img} alt={title} />
         <SongMetaImg>
-          <img src='assets/songLoading.svg' alt='loading' />
+          <img
+            src={imageStateSrc}
+            alt='song state'
+            onClick={() => setSong({ title, author, img, id })}
+          />
         </SongMetaImg>
       </SongImg>
       <GroupDetails>
