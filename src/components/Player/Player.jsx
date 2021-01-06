@@ -18,6 +18,7 @@ const Player = ({
   handleProgress,
   curTime,
   dur,
+  muteVolume,
 }) => {
   return (
     <>
@@ -34,7 +35,12 @@ const Player = ({
       <PlayerMain isDisplayed={audio.playing}>
         <PlayerInner>
           <Volume>
-            <img style={{ height: 32 }} src='assets/volume.svg' alt='volume' />
+            <img
+              onClick={muteVolume}
+              style={{ height: 32 }}
+              src='assets/volume.svg'
+              alt='volume'
+            />
             <input
               className='volume'
               value={Math.floor(volume * 100)}
@@ -50,7 +56,7 @@ const Player = ({
             />
             <img
               src={audio.isPlayingId ? 'assets/pause.svg' : 'assets/play.svg'}
-              onClick={audio.setIsPlaying}
+              onClick={() => audio.setIsPlaying(audio.playing.id)}
               alt='play'
             />
             <img

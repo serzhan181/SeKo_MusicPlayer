@@ -78,6 +78,18 @@ class Audio {
     return
   }
 
+  songHasBeenSetId = null
+
+  checkSongHasBeenSet = (songId) => {
+    if (this.songHasBeenSetId === songId) {
+      this.setIsPlaying(songId)
+      return 'set'
+    } else {
+      this.songHasBeenSetId = songId
+      return null
+    }
+  }
+
   setSong = async (songData) => {
     this.setIsSongLoaded(songData.id)
 
@@ -100,6 +112,8 @@ class Audio {
     })
 
     this.setIsSongLoaded(songData.id)
+
+    document.title = songData.title
 
     runInAction(() => {
       this.isPlayingId = id

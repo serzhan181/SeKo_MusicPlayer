@@ -1,12 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import Player from './Player.jsx'
 
-export const PlayerContainer = observer(({ audio }) => {
+export const PlayerContainer = observer(({ audio, player }) => {
   // audio
-
-  const player = useRef(null)
-
   const [curTime, setCurTime] = useState(0)
   const [volume, setVolume] = useState(1)
   const dur = player.current?.duration
@@ -14,6 +11,11 @@ export const PlayerContainer = observer(({ audio }) => {
   const handleVolume = (v) => {
     setVolume(v)
     player.current.volume = v
+  }
+
+  const muteVolume = () => {
+    setVolume(0)
+    player.current.volume = 0
   }
 
   const handleProgress = (e) => {
@@ -31,7 +33,7 @@ export const PlayerContainer = observer(({ audio }) => {
     } else {
       player.current.pause()
     }
-  }, [audio.isPlayingId, audio.playing])
+  }, [audio.isPlayingId, audio.playing, player])
 
   return (
     <Player
@@ -43,6 +45,7 @@ export const PlayerContainer = observer(({ audio }) => {
       handleProgress={handleProgress}
       curTime={curTime}
       dur={dur}
+      muteVolume={muteVolume}
     />
   )
 })

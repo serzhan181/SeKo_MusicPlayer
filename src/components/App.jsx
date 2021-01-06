@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { theme } from '../store/ThemeStore'
 import styled, { ThemeProvider, withTheme } from 'styled-components'
@@ -8,6 +8,8 @@ import { PlayerContainer } from './Player'
 import MainContainer from './Main'
 
 const App = () => {
+  const player = useRef(null)
+
   const [themeMode, setThemeMode] = useState(
     localStorage.getItem('themeMode') || 'light'
   )
@@ -30,11 +32,11 @@ const App = () => {
           <div className='container'>
             <Switch>
               <Route path='/search'>
-                <MainContainer audio={audio} />
+                <MainContainer audio={audio} player={player} />
               </Route>
             </Switch>
           </div>
-          <PlayerContainer audio={audio} />
+          <PlayerContainer audio={audio} player={player} />
         </Router>
       </MainWrapper>
     </ThemeProvider>

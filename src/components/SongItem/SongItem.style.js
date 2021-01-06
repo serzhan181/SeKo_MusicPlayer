@@ -21,14 +21,12 @@ export const Item = styled.div`
   }};
 `
 
-export const SongMetaImg = styled.div`
-  img {
-    display: none;
-    position: absolute;
-    left: 0%;
-    top: 45%;
-    cursor: pointer;
-  }
+export const SongMetaImg = styled.img`
+  display: none;
+  position: absolute;
+  left: 0%;
+  top: 45%;
+  cursor: pointer;
 `
 
 export const SongImg = styled.div`
@@ -47,11 +45,9 @@ export const SongImg = styled.div`
 
   &:hover {
     ${SongMetaImg} {
-      img {
-        display: block;
-        height: 70px;
-        object-fit: contain;
-      }
+      display: block;
+      height: 70px;
+      object-fit: contain;
     }
   }
 `

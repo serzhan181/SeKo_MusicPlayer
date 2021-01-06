@@ -1,12 +1,12 @@
 import React from 'react'
-import { GroupDetails, Item, SongImg, SongMetaImg } from './SongItem'
+import { GroupDetails, Item, SongImg, SongMetaImg } from './SongItem.style'
 import { withTheme } from 'styled-components'
 
 const SongItem = ({
   title,
   author,
   img,
-  setSong,
+  toggleSetSongOrSwitchState,
   id,
   playingId,
   isPlayingId,
@@ -17,18 +17,15 @@ const SongItem = ({
 
   return (
     <Item active={playingId === id}>
-      <SongImg
-        isPlayingId={isPlayingId === id}
-        loadedSongId={loadedSongId !== id}
-      >
+      <SongImg>
         <img src={img} alt={title} />
-        <SongMetaImg>
-          <img
-            src={imageStateSrc}
-            alt='song state'
-            onClick={() => setSong({ title, author, img, id })}
-          />
-        </SongMetaImg>
+        <SongMetaImg
+          src={imageStateSrc || 'assets/songLoading.svg'}
+          alt='song state'
+          onClick={() =>
+            toggleSetSongOrSwitchState(id, { title, author, img, id })
+          }
+        />
       </SongImg>
       <GroupDetails>
         <h4>{title}</h4>
