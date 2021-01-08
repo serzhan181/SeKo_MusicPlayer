@@ -20,7 +20,7 @@ const SongItem = ({
       <SongImg>
         <img src={img} alt={title} />
         <SongMetaImg
-          src={imageStateSrc || 'assets/songLoading.svg'}
+          src={loadedSongId === id ? 'assets/songLoading.svg' : imageStateSrc}
           alt='song state'
           onClick={() =>
             toggleSetSongOrSwitchState(id, { title, author, img, id })
@@ -28,7 +28,7 @@ const SongItem = ({
         />
       </SongImg>
       <GroupDetails>
-        <h4>{title}</h4>
+        <h4 dangerouslySetInnerHTML={{ __html: title }} />
         <span>{author}</span>
       </GroupDetails>
     </Item>

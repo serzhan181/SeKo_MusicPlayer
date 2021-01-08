@@ -12,10 +12,7 @@ const Search = ({ searchQuery, setSearch }) => {
         type='text'
         placeholder='Search music'
       />
-      <button
-        style={{ backgroundColor: 'beige' }}
-        onClick={() => console.log(searchQuery)}
-      >
+      <button style={{ backgroundColor: 'beige' }}>
         <Link to={`/search?q=${searchQuery}`}>Search</Link>
       </button>
     </div>

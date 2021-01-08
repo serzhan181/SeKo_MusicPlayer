@@ -107,7 +107,18 @@ export const PlayerInner = styled.div`
   width: 100%;
 `
 export const Volume = styled.div`
+  width: 210px;
+  display: flex;
+  align-items: center;
+
+  img {
+    cursor: pointer;
+    margin-right: 1rem;
+    filter: ${(props) => getColorTheme(props)};
+  }
+
   input {
+    width: 150px;
     background-color: transparent;
   }
 

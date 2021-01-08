@@ -13,7 +13,6 @@ const MainContainer = observer(({ audio, player }) => {
 
   const toggleSetSongOrSwitchState = (songId, songData) => {
     const state = audio.checkSongHasBeenSet(songId)
-    console.log('STATE OF "state"', state)
 
     if (!state) {
       audio.setSong(songData)

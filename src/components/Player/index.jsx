@@ -6,16 +6,32 @@ export const PlayerContainer = observer(({ audio, player }) => {
   // audio
   const [curTime, setCurTime] = useState(0)
   const [volume, setVolume] = useState(1)
+  const [muted, setMuted] = useState({ notMuted: true, curVolume: 1 })
   const dur = player.current?.duration
 
-  const handleVolume = (v) => {
-    setVolume(v)
-    player.current.volume = v
+  const toggleMuteVolume = () => {
+    setMuted((muted) => ({
+      ...muted,
+      notMuted: !muted.notMuted,
+      curVolume: volume,
+    }))
+
+    if (muted.notMuted) {
+      setVolume(0)
+      player.current.volume = 0
+    } else {
+      setVolume(muted.curVolume)
+      player.current.volume = muted.curVolume
+    }
   }
 
-  const muteVolume = () => {
-    setVolume(0)
-    player.current.volume = 0
+  const handleVolume = (v) => {
+    if (!muted.notMuted) {
+      toggleMuteVolume()
+    } else if (v === 0) setMuted({ ...muted, notMuted: false })
+
+    setVolume(v)
+    player.current.volume = v
   }
 
   const handleProgress = (e) => {
@@ -45,7 +61,8 @@ export const PlayerContainer = observer(({ audio, player }) => {
       handleProgress={handleProgress}
       curTime={curTime}
       dur={dur}
-      muteVolume={muteVolume}
+      toggleMuteVolume={toggleMuteVolume}
+      notMuted={muted.notMuted}
     />
   )
 })

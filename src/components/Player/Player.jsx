@@ -18,7 +18,8 @@ const Player = ({
   handleProgress,
   curTime,
   dur,
-  muteVolume,
+  toggleMuteVolume,
+  notMuted,
 }) => {
   return (
     <>
@@ -36,9 +37,9 @@ const Player = ({
         <PlayerInner>
           <Volume>
             <img
-              onClick={muteVolume}
+              onClick={toggleMuteVolume}
               style={{ height: 32 }}
-              src='assets/volume.svg'
+              src={notMuted ? 'assets/volume.svg' : 'assets/volume-muted.svg'}
               alt='volume'
             />
             <input

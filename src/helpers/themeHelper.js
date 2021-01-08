@@ -1,7 +1,7 @@
 export const lightTheme = {
-  primary: '#fff',
+  primary: '#b2b7ae',
   secondary: '#3C3C3C',
-  third: 'rgb(185, 185, 185)',
+  third: '#262626',
 
   mode: 'light',
 }

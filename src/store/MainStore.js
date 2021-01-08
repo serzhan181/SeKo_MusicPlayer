@@ -98,7 +98,8 @@ class Audio {
     try {
       songURL = await getSong(id)
     } catch (error) {
-      console.log('ERROR BLYAT', error)
+      console.log('ERROR', error)
+      return window.location.replace('/error')
     }
 
     runInAction(() => {
