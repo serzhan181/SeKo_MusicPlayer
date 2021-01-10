@@ -7,6 +7,7 @@ import {
   PlayerInner,
   Volume,
 } from './Player.style.js'
+import { ErrorSong } from '../ErrorSong'
 import { withTheme } from 'styled-components'
 
 const Player = ({
@@ -20,12 +21,20 @@ const Player = ({
   dur,
   toggleMuteVolume,
   notMuted,
+  errDisplayValue,
+  setErrDisplayValue,
+  isModalOpened,
+  setIsModalOpened,
 }) => {
   return (
     <>
       <audio
         onTimeUpdate={(e) => setCurTime(e.target.currentTime)}
-        onEnded={() => audio.setNextSong(audio.playing.id)}
+        onEnded={async () => await audio.setNextSong(audio.playing.id)}
+        onError={(e) => {
+          e.preventDefault()
+          setIsModalOpened(true)
+        }}
         src={audio.playing?.songURL}
         ref={player}
         type='audio/mpeg'
@@ -34,6 +43,10 @@ const Player = ({
       ></audio>
 
       <PlayerMain isDisplayed={audio.playing}>
+        <ErrorSong
+          display={errDisplayValue}
+          setIsModalOpened={setIsModalOpened}
+        />
         <PlayerInner>
           <Volume>
             <img
@@ -51,7 +64,7 @@ const Player = ({
           </Volume>
           <Controller>
             <img
-              onClick={() => audio.setPrevSong(audio.playing.id)}
+              onClick={async () => await audio.setPrevSong(audio.playing.id)}
               src='assets/prev.svg'
               alt='previous'
             />
@@ -61,7 +74,7 @@ const Player = ({
               alt='play'
             />
             <img
-              onClick={() => audio.setNextSong(audio.playing.id)}
+              onClick={async () => await audio.setNextSong(audio.playing.id)}
               src='assets/forward.svg'
               alt='next'
             />

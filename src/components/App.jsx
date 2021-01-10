@@ -47,10 +47,12 @@ const App = () => {
 }
 
 const Wrapper = styled.div`
-  width: 100%;
-  /* height: 100vh; */
-  overflow: hidden;
-  background-color: ${(props) => props.theme.primary};
+  body {
+    width: 100%;
+    /* height: 100vh; */
+    overflow: hidden;
+    background-color: ${(props) => props.theme.primary};
+  }
 `
 
 const MainWrapper = withTheme(Wrapper)

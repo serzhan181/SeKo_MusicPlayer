@@ -51,6 +51,21 @@ export const PlayerContainer = observer(({ audio, player }) => {
     }
   }, [audio.isPlayingId, audio.playing, player])
 
+  // Handle Song Error
+
+  const [errDisplayValue, setErrDisplayValue] = useState('none')
+  const [isModalOpened, setIsModalOpened] = useState(false)
+
+  useEffect(() => {
+    if (isModalOpened) {
+      document.body.style.overflow = 'hidden'
+      setErrDisplayValue('flex')
+    } else {
+      document.body.style.overflow = 'visible'
+      setErrDisplayValue('none')
+    }
+  }, [isModalOpened])
+
   return (
     <Player
       audio={audio}
@@ -63,6 +78,10 @@ export const PlayerContainer = observer(({ audio, player }) => {
       dur={dur}
       toggleMuteVolume={toggleMuteVolume}
       notMuted={muted.notMuted}
+      errDisplayValue={errDisplayValue}
+      setErrDisplayValue={setErrDisplayValue}
+      isModalOpened={isModalOpened}
+      setIsModalOpened={setIsModalOpened}
     />
   )
 })

@@ -21,28 +21,6 @@ class Audio {
     } else this.isPlayingId = id
   }
 
-  setNextSong = (curSongIdx) => {
-    const idxInArr = this.songs.findIndex((s) => s.id === curSongIdx)
-
-    let nextSong
-
-    if (idxInArr === this.songs.length - 1) nextSong = this.songs[0]
-    else nextSong = this.songs[idxInArr + 1]
-
-    this.playing = { ...nextSong }
-  }
-
-  setPrevSong = (curSongIdx) => {
-    const idxInArr = this.songs.findIndex((s) => s.id === curSongIdx)
-
-    let prevSong
-
-    if (idxInArr === 0) prevSong = this.songs[this.songs.length - 1]
-    else prevSong = this.songs[idxInArr - 1]
-
-    this.playing = { ...prevSong }
-  }
-
   // Song related (async)
 
   loadedSongId = null
@@ -119,6 +97,28 @@ class Audio {
     runInAction(() => {
       this.isPlayingId = id
     })
+  }
+
+  setNextSong = async (curSongIdx) => {
+    const idxInArr = this.songs.findIndex((s) => s.id === curSongIdx)
+
+    let nextSong
+
+    if (idxInArr === this.songs.length - 1) nextSong = this.songs[0]
+    else nextSong = this.songs[idxInArr + 1]
+
+    await this.setSong(nextSong)
+  }
+
+  setPrevSong = async (curSongIdx) => {
+    const idxInArr = this.songs.findIndex((s) => s.id === curSongIdx)
+
+    let prevSong
+
+    if (idxInArr === 0) prevSong = this.songs[this.songs.length - 1]
+    else prevSong = this.songs[idxInArr - 1]
+
+    await this.setSong(prevSong)
   }
 }
 
