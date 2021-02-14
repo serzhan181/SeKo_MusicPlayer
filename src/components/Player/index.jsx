@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { audio } from '../../store/MainStore'
 import { observer } from 'mobx-react-lite'
 import Player from './Player.jsx'
 
-export const PlayerContainer = observer(({ audio, player }) => {
-  // audio
+export const PlayerContainer = observer(({ player }) => {
   const [curTime, setCurTime] = useState(0)
   const [volume, setVolume] = useState(1)
   const [muted, setMuted] = useState({ notMuted: true, curVolume: 1 })
@@ -49,9 +49,7 @@ export const PlayerContainer = observer(({ audio, player }) => {
     } else {
       player.current.pause()
     }
-  }, [audio.isPlayingId, audio.playing, player])
-
-  // Handle Song Error
+  }, [audio.isPlayingId, audio.curSong, player])
 
   const [errDisplayValue, setErrDisplayValue] = useState('none')
   const [isModalOpened, setIsModalOpened] = useState(false)
@@ -68,7 +66,6 @@ export const PlayerContainer = observer(({ audio, player }) => {
 
   return (
     <Player
-      audio={audio}
       player={player}
       setCurTime={setCurTime}
       volume={volume}

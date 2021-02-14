@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { audio } from '../../store/MainStore'
 import { observer } from 'mobx-react-lite'
 import { Preloader } from '../Preloader'
 import SongItem from '../SongItem'
@@ -6,7 +7,7 @@ import { MainList } from './Main.style'
 import { withTheme } from 'styled-components'
 import { useQuery } from '../../hooks/useQuery'
 
-const MainContainer = observer(({ audio, player }) => {
+const Main = observer(({ player }) => {
   const query = useQuery()
 
   audio.setSongsOnSearch(query.get('q'))
@@ -25,7 +26,7 @@ const MainContainer = observer(({ audio, player }) => {
     } else {
       player.current.pause()
     }
-  }, [audio.isPlayingId, audio.playing, player])
+  }, [audio.isPlayingId, audio.curSong, player])
 
   return (
     <>
@@ -41,7 +42,7 @@ const MainContainer = observer(({ audio, player }) => {
               img={s.img}
               toggleSetSongOrSwitchState={toggleSetSongOrSwitchState}
               id={s.id}
-              playingId={audio.playing?.id}
+              playingId={audio.curSong?.id}
               isPlayingId={audio.isPlayingId}
               loadedSongId={audio.loadedSongId}
             />
@@ -52,4 +53,4 @@ const MainContainer = observer(({ audio, player }) => {
   )
 })
 
-export default withTheme(MainContainer)
+export default withTheme(Main)

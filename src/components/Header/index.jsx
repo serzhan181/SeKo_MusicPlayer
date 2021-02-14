@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { HeaderMain, ModeIcon } from './Header.style'
 import { withTheme } from 'styled-components'
 
-const Header = observer(({ setTheme, themeMode, audio }) => {
+const Header = observer(({ setTheme, themeMode }) => {
   return (
     <HeaderMain>
       <ModeIcon
@@ -12,7 +12,7 @@ const Header = observer(({ setTheme, themeMode, audio }) => {
         src={`assets/${themeMode === 'light' ? 'moon' : 'sun'}.svg`}
         alt='change theme'
       />
-      <SearchContainer audio={audio} />
+      <SearchContainer />
     </HeaderMain>
   )
 })

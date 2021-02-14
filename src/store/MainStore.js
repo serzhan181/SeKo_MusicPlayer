@@ -7,11 +7,9 @@ class Audio {
     makeAutoObservable(this)
   }
 
-  // Song related
-
   songs = []
 
-  playing = null
+  curSong = null
 
   isPlayingId = null
 
@@ -21,7 +19,7 @@ class Audio {
     } else this.isPlayingId = id
   }
 
-  // Song related (async)
+  // async
 
   loadedSongId = null
   setIsSongLoaded = (id) => {
@@ -35,13 +33,13 @@ class Audio {
       this.haveSongsLoaded = !this.haveSongsLoaded
     })
   }
-  searchQuery = ''
+  lastSearchQuery = ''
 
   setSongsOnSearch = async (query) => {
-    if (query !== this.searchQuery) {
+    if (query !== this.lastSearchQuery) {
       this.setHaveSongsLoaded()
       runInAction(() => {
-        this.searchQuery = query // needed, cuz component renders several times and server recives several requests.
+        this.searchQuery = query // to not overload server.
       })
 
       const res = await getSearchRes(query)
@@ -81,7 +79,7 @@ class Audio {
     }
 
     runInAction(() => {
-      this.playing = {
+      this.curSong = {
         title: songData.title,
         author: songData.author,
         img: songData.img,
@@ -123,4 +121,3 @@ class Audio {
 }
 
 export const audio = new Audio()
-window.audio = audio

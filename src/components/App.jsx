@@ -2,11 +2,10 @@ import React, { useState, useEffect, useRef } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { theme } from '../store/ThemeStore'
 import styled, { ThemeProvider, withTheme } from 'styled-components'
-import { audio } from '../store/MainStore'
 import Header from './Header'
 import { PlayerContainer } from './Player'
 import { Errorpage } from './ErrorPage'
-import MainContainer from './Main'
+import Main from './Main'
 
 const App = () => {
   const player = useRef(null)
@@ -29,17 +28,17 @@ const App = () => {
     <ThemeProvider theme={theme.themes[themeMode]}>
       <MainWrapper>
         <Router>
-          <Header setTheme={setTheme} themeMode={themeMode} audio={audio} />
+          <Header setTheme={setTheme} themeMode={themeMode} />
           <div className='container'>
             <Switch>
               <Route path='/search'>
-                <MainContainer audio={audio} player={player} />
+                <Main player={player} />
               </Route>
 
               <Route path='/error' component={Errorpage} />
             </Switch>
           </div>
-          <PlayerContainer audio={audio} player={player} />
+          <PlayerContainer player={player} />
         </Router>
       </MainWrapper>
     </ThemeProvider>
@@ -49,7 +48,6 @@ const App = () => {
 const Wrapper = styled.div`
   body {
     width: 100%;
-    /* height: 100vh; */
     overflow: hidden;
     background-color: ${(props) => props.theme.primary};
   }

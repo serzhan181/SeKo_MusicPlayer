@@ -1,4 +1,5 @@
 import React from 'react'
+import { audio } from '../../store/MainStore'
 import {
   Controller,
   PlayerMain,
@@ -11,7 +12,6 @@ import { ErrorSong } from '../ErrorSong'
 import { withTheme } from 'styled-components'
 
 const Player = ({
-  audio,
   player,
   setCurTime,
   volume,
@@ -30,19 +30,19 @@ const Player = ({
     <>
       <audio
         onTimeUpdate={(e) => setCurTime(e.target.currentTime)}
-        onEnded={async () => await audio.setNextSong(audio.playing.id)}
+        onEnded={async () => await audio.setNextSong(audio.curSong.id)}
         onError={(e) => {
           e.preventDefault()
           setIsModalOpened(true)
         }}
-        src={audio.playing?.songURL}
+        src={audio.curSong?.songURL}
         ref={player}
         type='audio/mpeg'
         preload='true'
         autoPlay={false}
       ></audio>
 
-      <PlayerMain isDisplayed={audio.playing}>
+      <PlayerMain isDisplayed={audio.curSong}>
         <ErrorSong
           display={errDisplayValue}
           setIsModalOpened={setIsModalOpened}
@@ -64,26 +64,26 @@ const Player = ({
           </Volume>
           <Controller>
             <img
-              onClick={async () => await audio.setPrevSong(audio.playing.id)}
+              onClick={async () => await audio.setPrevSong(audio.curSong.id)}
               src='assets/prev.svg'
               alt='previous'
             />
             <img
               src={audio.isPlayingId ? 'assets/pause.svg' : 'assets/play.svg'}
-              onClick={() => audio.setIsPlaying(audio.playing.id)}
+              onClick={() => audio.setIsPlaying(audio.curSong.id)}
               alt='play'
             />
             <img
-              onClick={async () => await audio.setNextSong(audio.playing.id)}
+              onClick={async () => await audio.setNextSong(audio.curSong.id)}
               src='assets/forward.svg'
               alt='next'
             />
           </Controller>
           <SongInfo>
-            <img src={audio.playing?.img} alt={audio.playing?.title} />
+            <img src={audio.curSong?.img} alt={audio.curSong?.title} />
             <div>
-              <h4>{audio.playing?.title}</h4>
-              <span>{audio.playing?.author}</span>
+              <h4>{audio.curSong?.title}</h4>
+              <span>{audio.curSong?.author}</span>
             </div>
           </SongInfo>
         </PlayerInner>
